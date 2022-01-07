@@ -32,6 +32,8 @@ def resize(input, output, resize_width):
             stream = ffmpeg.filter(stream, 'scale', w=resize_width, h="trunc(ow/a/2)*2")
         stream = ffmpeg.output(stream, output)
         try:
+            print(ffmpeg.compile(stream))
+            exit(1)
             ffmpeg.run(stream)
         except FileNotFoundError:
             raise Exception("ffmpeg not found, make sure ffmpeg is in the PATH")            
